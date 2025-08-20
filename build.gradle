@@ -42,6 +42,10 @@ dependencies {
     spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.14.0'
 }
 
+war {
+    webAppDirectory = file('src/main/webapp')
+}
+
 // configure SpotBugs
 tasks.spotbugsMain {
     reports.create("html") {

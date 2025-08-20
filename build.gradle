@@ -1,0 +1,61 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'war'
+    // SpotBugs
+    id("com.github.spotbugs") version "6.2.3"
+}
+
+application {
+    mainClass = 'org.wisclick.TargetServer'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // bson
+    implementation 'org.mongodb:bson:5.5.1'
+    // mongodb
+    implementation 'org.mongodb:mongodb-driver-sync:5.5.1'
+    implementation 'org.mongodb:mongodb-driver-core:5.5.1'
+    // sl4j
+    implementation 'org.apache.logging.log4j:log4j-core:2.25.1'
+    // jetty
+    implementation 'org.eclipse.jetty:jetty-http:12.0.23'
+    implementation 'org.eclipse.jetty:jetty-io:12.0.23'
+    implementation 'org.eclipse.jetty:jetty-security:12.0.23'
+    implementation 'org.eclipse.jetty:jetty-server:12.0.23'
+    implementation 'org.eclipse.jetty:jetty-util:12.0.23'
+    implementation 'org.eclipse.jetty.ee10:jetty-ee10-servlet:12.0.23'
+    implementation 'org.eclipse.jetty.ee10:jetty-ee10-webapp:12.0.23'
+    // eclipse compiler
+    implementation 'org.eclipse.jdt:ecj:3.42.0'
+
+    // jakarta servlet-api (should be in sync with jetty version)
+    compileOnly 'jakarta.servlet:jakarta.servlet-api:6.1.0'
+
+    // fb-contrib plugin for SpotBugs
+    spotbugsPlugins 'com.mebigfatguy.fb-contrib:fb-contrib:7.6.12'
+    // find-sec-bugs plugin for SpotBugs
+    spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.14.0'
+}
+
+war {
+    webAppDirectory = file('src/main/webapp')
+}
+
+// configure SpotBugs
+tasks.spotbugsMain {
+    reports.create("html") {
+        required = true
+        outputLocation = file("$buildDir/reports/spotbugs.html")
+        setStylesheet("fancy-hist.xsl")
+    }
+}
+
+// prevents the server from exiting due to a NULL console, when running via gradle
+tasks.named('run', JavaExec) {
+    standardInput = System.in
+}

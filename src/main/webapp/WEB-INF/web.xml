@@ -1,0 +1,64 @@
+<!--Defines mappings between URL paths and the WisClick servlets-->
+<!--Author: Amelia Sitzberger-->
+
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+
+    <!-- Servlet definitions and mappings go here -->
+    <servlet>
+        <servlet-name>AccountPageServlet</servlet-name>
+        <servlet-class>org.wisclick.AccountPageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AccountPageServlet</servlet-name>
+        <url-pattern>/account</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>EarnPointsPageServlet</servlet-name>
+        <servlet-class>org.wisclick.EarnPointsPageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EarnPointsPageServlet</servlet-name>
+        <url-pattern>/earn</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>org.wisclick.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>RankListPageServlet</servlet-name>
+        <servlet-class>org.wisclick.RankListPageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RankListPageServlet</servlet-name>
+        <url-pattern>/rank</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>TransferPageServlet</servlet-name>
+        <servlet-class>org.wisclick.TransferPageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TransferPageServlet</servlet-name>
+        <url-pattern>/transfer</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ViewPageServlet</servlet-name>
+        <servlet-class>org.wisclick.ViewPageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewPageServlet</servlet-name>
+        <url-pattern>/welcome</url-pattern>
+    </servlet-mapping>
+
+</web-app>

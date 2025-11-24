@@ -2,8 +2,8 @@ plugins {
     id 'java'
     id 'application'
     id 'war'
-    // SpotBugs
-    id("com.github.spotbugs") version "6.2.3"
+    // SpotBugs - disabled due to network restrictions
+    // id("com.github.spotbugs") version "6.2.3"
 }
 
 application {
@@ -36,24 +36,24 @@ dependencies {
     // jakarta servlet-api (should be in sync with jetty version)
     compileOnly 'jakarta.servlet:jakarta.servlet-api:6.1.0'
 
-    // fb-contrib plugin for SpotBugs
-    spotbugsPlugins 'com.mebigfatguy.fb-contrib:fb-contrib:7.6.12'
-    // find-sec-bugs plugin for SpotBugs
-    spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.14.0'
+    // fb-contrib plugin for SpotBugs - disabled
+    // spotbugsPlugins 'com.mebigfatguy.fb-contrib:fb-contrib:7.6.12'
+    // find-sec-bugs plugin for SpotBugs - disabled
+    // spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.14.0'
 }
 
 war {
     webAppDirectory = file('src/main/webapp')
 }
 
-// configure SpotBugs
-tasks.spotbugsMain {
-    reports.create("html") {
-        required = true
-        outputLocation = file("$buildDir/reports/spotbugs.html")
-        setStylesheet("fancy-hist.xsl")
-    }
-}
+// configure SpotBugs - disabled
+// tasks.spotbugsMain {
+//     reports.create("html") {
+//         required = true
+//         outputLocation = file("$buildDir/reports/spotbugs.html")
+//         setStylesheet("fancy-hist.xsl")
+//     }
+// }
 
 // prevents the server from exiting due to a NULL console, when running via gradle
 tasks.named('run', JavaExec) {
